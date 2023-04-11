@@ -1,0 +1,19 @@
+<div class="container shadow p-2 mb-4 bg-body-tertiary rounded">
+  <h2 class="text-center">Filmes</h2>
+</div>
+<div class="container text-center text-success"><%= notice %></div><br>
+<div class="container shadow p-2 mb-4 bg-body-tertiary rounded">
+  <%= link_to "Novo Filme", new_movie_path, class: "btn btn-outline-secondary" %>
+  <% if @movies.any? %>
+    <div id="movies">
+      <dl class="row p-3 text-muted">
+        <% @movies.each do |movie| %>
+          <dt class="col-sm-6"><%= link_to movie.title, movie_path(movie) %> - <%= movie.release_year %></dt>
+          <dd class="col-sm-auto"><%= link_to "Editar", edit_movie_path(movie), class: "btn btn-outline-secondary" %></dd>
+          <dd class="col-sm-auto"><%= button_to "Excluir", movie_path(movie), class: "btn btn-outline-secondary",
+          form: { data: { turbo_confirm: "Tem certeza que deseja excluir?" } }, method: :delete %></dd>
+        <% end %>
+      </dl>
+    </div>
+  <% end %>  
+</div>

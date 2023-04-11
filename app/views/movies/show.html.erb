@@ -1,0 +1,40 @@
+
+<div class="container shadow p-1 mb-4 bg-body-tertiary rounded" style="max-width: 750px;">
+  <h5 class="text-center text-muted"><%= @movie.title %></h5>
+</div>
+<div class="container d-flex justify-content-center">
+  <div class="card mb-3" style="max-width: 750px;">
+    <div class="row">
+      <div class="col">
+        <div class="card-body">
+            <dl class="row text-muted" data-controller="formatpis">
+            <dt class="col-sm-4">Ano de lançamento</dt>
+            <dd class="col-sm-8"><%= @movie.release_year %></dd>
+
+            <dt class="col-sm-4">País</dt>
+            <dd class="col-sm-8"><%= @movie.country %></dd>
+
+            <dt class="col-sm-4">Duração</dt>
+            <dd class="col-sm-8"><%= @movie.duration  %></dd>
+
+            <dt class="col-sm-4">Diretor</dt>
+            <dd class="col-sm-8"><%= @movie.director.name %></dd>
+
+            <dt class="col-sm-4">Gênero</dt>
+            <dd class="col-sm-8"><%= @movie.genre.name %></dd>
+
+            <dt class="col-sm-4">Sinopse</dt>
+            <dd class="col-sm-8" ><%= @movie.synopsis %></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center">
+  <%= link_to "Voltar", :back, class: "btn btn-outline-secondary me-2" %>
+  <%= link_to "Editar", edit_movie_path(@movie), class: "btn btn-outline-secondary me-1" %>
+  <%= button_to "Excluir", movie_path(@movie), class: "btn btn-outline-secondary ms-1",
+                  form: { data: { turbo_confirm: "Tem certeza que deseja excluir?" } }, method: :delete %>
+</div>
+

@@ -1,0 +1,26 @@
+pt-BR:
+ activerecord:
+   models:
+     genre:
+       one: Gênero
+       other: Gêneros   
+     director:
+       one: Diretor
+       other: Diretores
+     movie:
+       one: Filme
+       other: Filmes              
+   attributes:
+     genre:
+       name: Nome   
+     diretor:
+       name: Nome
+       nationality: Nacionalidade
+       date_birth: Aniversário   
+     filme:
+       title: Título
+       release_year: Ano de lançamento
+       synopsis: Sinopse
+       country: País de origem
+       duration: Duração
+

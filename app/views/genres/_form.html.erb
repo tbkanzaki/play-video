@@ -1,0 +1,22 @@
+<%= form_with(model: genre) do |form| %>
+    <% if genre.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(genre.errors.count, "error") %> prohibited this genre from being saved:</h2>
+
+        <ul>
+          <% genre.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-floating mb-3">
+      <%= form.text_field :name, class: 'form-control mb-2', placeholder: "Nome de gênero", required: true %>
+      <%= form.label :name, for: "floatingInput" %>
+    </div>
+    <div class="d-flex justify-content-center">
+      <%= form.submit 'Salvar', class: 'btn btn-secondary  mt-2' %>
+      <%= link_to "Voltar", :back, class: "btn btn-outline-secondary mt-2 ms-2" %>
+    </div>
+<% end %>

@@ -1,0 +1,39 @@
+<%= form_with(model: director) do |form| %>
+  <% if director.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(director.errors.count, "error") %> prohibited this director from being saved:</h2>
+
+      <ul>
+        <% director.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :name, class: 'form-control mb-2', placeholder: "Nome do diretor", required: true %>
+    <%= form.label :name, for: "floatingInput" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :nationality, class: 'form-control mb-2', placeholder: "Nacionalidade" , required: true %>
+    <%= form.label :nationality, for: "floatingInput" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.date_field :date_birth, class: 'form-control  mb-3', required: true%>
+    <%= form.label :date_birth, for: "floatingInput" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.collection_select(:genre_id, Genre.order(:name), :id, :name , { prompt: 'Selecione' }, { class: 'form-control mb-2' , required: true}) %>
+    <%= form.label "Escolha o gênero favorito do diretor", for: "floatingInput" %>
+  </div>
+
+    <div class="d-flex justify-content-center">
+      <%= form.submit 'Salvar', class: 'btn btn-secondary  mt-2' %>
+      <%= link_to "Voltar", :back, class: "btn btn-outline-secondary mt-2 ms-2" %>
+    </div>
+
+<% end %>

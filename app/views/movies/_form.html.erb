@@ -1,0 +1,64 @@
+<%= form_with(model: movie) do |form| %>
+  <% if movie.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+        <% movie.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :title, class: 'form-control mb-2', placeholder: "Nome do filme", required: true %>
+    <%= form.label :title, for: "floatingInput" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.number_field :release_year, class: 'form-control mb-2', placeholder: "Nome do filme", required: true  %>
+    <%= form.label :release_year, for: "floatingInput" %>
+  </div>
+
+  <div class="form-floating mb-3">
+      <%= form.text_area :synopsis, class: 'form-control mb-2', placeholder: "Nome do filme", required: true  %>
+      <%= form.label :synopsis, for: "floatingInput" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :country, class: 'form-control mb-2', placeholder: "Nome do filme", required: true  %>
+    <%= form.label :country, for: "floatingInput" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.number_field :duration, class: 'form-control mb-2', placeholder: "Nome do filme", required: true  %>
+    <%= form.label :duration, for: "floatingInput" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.collection_select(:director_id, Director.order(:name), :id, :name , { prompt: 'Selecione' }, { class: 'form-control mb-2' , required: true}) %>
+    <%= form.label :director_id, for: "floatingInput" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.collection_select(:genre_id, Genre.order(:name), :id, :name , { prompt: 'Selecione' }, { class: 'form-control mb-2' , required: true}) %>
+    <%= form.label :genre_id, for: "floatingInput" %>
+  </div>
+
+  <div class="form-control mb-3">
+    <%= form.label :status %>
+    <%= form.select :status, options_for_select(Movie.statuses.keys.map { |status| [status.titleize, status] }, :selected => form.object.status), {prompt: "Escolher" }, { class: "form-control  mb-2 border-0 border-bottom", 'data-style': 'form-control'  , required: true}  %>
+    
+  </div>
+
+  <div class="form-control mb-3">
+    <%= form.label :release %>
+    <%= form.select :release, options_for_select(Movie.releases.keys.map { |release| [release.humanize, release] }, :selected => form.object.release) , {prompt: "Escolher" }, { class: "form-control  mb-2 border-0 border-bottom", 'data-style': 'form-control'  , required: true} %>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <%= form.submit 'Salvar', class: 'btn btn-secondary  mt-2' %>
+    <%= link_to "Voltar", :back, class: "btn btn-outline-secondary mt-2 ms-2" %>
+  </div>
+<% end %>

@@ -1,0 +1,22 @@
+<div class="container shadow p-2 mb-4 bg-body-tertiary rounded">
+  <h2 class="text-center">Diretores</h2>
+</div>
+<div class="container text-center text-success"><%= notice %></div><br>
+<div class="container shadow p-2 mb-4 bg-body-tertiary rounded">
+  <%= link_to "Novo Diretor", new_director_path, class: "btn btn-outline-secondary" %>
+  <% if @directors.any? %>
+    <div id="directors">
+      <dl class="row p-3 text-muted">
+        <% @directors.each do |director| %>
+          <dt class="col-sm-6"><%= link_to director.name, director_path(director)  %></dt>
+          <dd class="col-sm-auto"><%= link_to "Editar", edit_director_path(director), class: "btn btn-outline-secondary" %></dd>
+          <dd class="col-sm-auto"><%= button_to "Excluir", director_path(director), class: "btn btn-outline-secondary",
+          form: { data: { turbo_confirm: "Tem certeza que deseja excluir?" } }, method: :delete %></dd>
+        <% end %>
+      </dl>
+    </div>
+  <% end %>
+</div>
+    
+
+
